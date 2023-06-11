@@ -1,0 +1,5 @@
+Django==4.2.2
+django_environ==0.10.0
+django_filter==23.2
+environ==1.0
+Requests==2.31.0
