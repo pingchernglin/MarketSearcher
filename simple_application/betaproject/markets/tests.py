@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.core.cache import cache
 from .models import Market
-
+import re
 class MarketViewTests(TestCase):
 
     def setUp(self):
@@ -56,3 +56,37 @@ class MarketViewTests(TestCase):
         self.assertTemplateUsed(response, 'homepage.html')
         self.assertIn('mymarket', response.context)
         self.assertEqual(response.context['mymarket'].count(), 1)
+
+    def test_time_format(self):
+        timestamp = '0x11111112'
+        regex_pattern = r'^0x[0-9a-fA-F]{8}$'
+        self.assertTrue(re.match(regex_pattern, timestamp))
+        
+        timestamp = '4g0000A000' # does not start with 0x
+        self.assertFalse(re.match(regex_pattern, timestamp))
+        
+        timestamp = '0x00000000d' # 1 more digit
+        self.assertFalse(re.match(regex_pattern, timestamp))
+        
+        timestamp = '0x0000000' # 1 less digit
+        self.assertFalse(re.match(regex_pattern, timestamp))
+
+        timestamp = '0x0000000g' # other than a-f
+        self.assertFalse(re.match(regex_pattern, timestamp))
+
+    def test_address_format(self):
+        address = '0x123456789012345678901234567890abcdabcdef'
+        regex_pattern = r'^0x[0-9a-fA-F]{40}$'
+        self.assertTrue(re.match(regex_pattern, address))
+        
+        address = '2x123456789012345678901234567890abcdabcdef' # does not start with 0x
+        self.assertFalse(re.match(regex_pattern, address))
+        
+        address = '0x123456789012345678901234567890abcdabcdefr' # 1 more digit
+        self.assertFalse(re.match(regex_pattern, address))
+        
+        address = '0x123456789012345678901234567890abcdabce' # 1 less digit
+        self.assertFalse(re.match(regex_pattern, address))
+
+        address = '0x123456789012345678901234567890abcdabcdeg' # other than a-f
+        self.assertFalse(re.match(regex_pattern, address))

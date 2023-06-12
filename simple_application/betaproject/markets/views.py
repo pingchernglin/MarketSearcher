@@ -29,10 +29,10 @@ def get_update(request):
 
   if cached_data is not None:
       # Data is cached, return the cached response
-      print("get_update() is cached!")
+      # print("get_update() is cached!")
       return cached_data
   
-  print("get_update() not cache!")
+  # print("get_update() not cache!")
   # The API endpoint
   fromBlock = env("FROMBLOCK")
   topic0 = env("TOPIC0")
@@ -69,7 +69,7 @@ def filter_time(request):
     mymarket = []
     if request.method == 'POST' and form.is_valid():
         timestamp = form.cleaned_data['filter_time']
-        if not re.match(r'^0x[0-9a-fA-F]+$', timestamp):
+        if not re.match(r'^0x[0-9a-fA-F]{8}$', timestamp):
           error = "Error: Invalid timestamp format"
           mymarket = Market.objects.all()
         else:
@@ -89,7 +89,7 @@ def filter_address(request):
     mymarket = []
     if request.method == 'POST' and form.is_valid():
         address = form.cleaned_data['filter_address']
-        if not re.match(r'^0x[0-9a-fA-F]+$', address):
+        if not re.match(r'^0x[0-9a-fA-F]{40}$', address):
             error = "Error: Invalid address format"
             mymarket = Market.objects.all()
         else:
