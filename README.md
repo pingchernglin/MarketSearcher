@@ -58,7 +58,7 @@ DB_PORT=5432
 Start the Redis server:
 ```lua
 sudo apt install redis
-sudo systemctl status redis
+sudo systemctl start redis
 ```
 
 Add your hostname to the settings in `Beta/simple_application/betaproject/betaproject/settings.py`:
