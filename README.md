@@ -1,5 +1,9 @@
 # Beta Market Searcher
 
+Demo:
+http://vcm-34276.vm.duke.edu:8000/markets/
+
+
 Beta Market Searcher is a project that utilizes PostgreSQL as its database. Please follow the instructions below to set up and run the project.
 
 ## Prerequisites

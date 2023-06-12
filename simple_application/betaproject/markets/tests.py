@@ -29,6 +29,8 @@ class MarketViewTests(TestCase):
  
     def test_get_update(self):
             # Test the get_update function
+            # Make sure cache works.
+            cache.clear()
             cached_data = cache.get('market_data')
             self.assertIsNone(cached_data)
             response = self.client.get(reverse('markets'))
@@ -38,6 +40,7 @@ class MarketViewTests(TestCase):
 
     def test_filter_time(self):
         # Test the filter_time view
+        # Make sure the data amount under searching criteria is correct
         form_data = {'filter_time': '0x22222223'}
         response = self.client.post(reverse('filter_time'), data=form_data)
         self.assertEqual(response.status_code, 200)
@@ -50,10 +53,10 @@ class MarketViewTests(TestCase):
     
     def test_filter_address(self):
         # Test the filter_address view
-        form_data = {'filter_address': '0x666a785b390d05123497169a04c72de652493be2'}
+        form_data = {'filter_address': '0x972a785b390d05123497169a04c72de652493be1'}
         response = self.client.post(reverse('filter_address'), data=form_data)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'homepage.html')
+        self.assertTemplateUsed(response, 'homepage.html') #make sure it calls correct html
         self.assertIn('mymarket', response.context)
         self.assertEqual(response.context['mymarket'].count(), 1)
 

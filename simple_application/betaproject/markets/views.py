@@ -60,16 +60,17 @@ def get_update(request):
             )
             new_market.save()
         mymarket = Market.objects.all().values()
-        cache.set('market_data', mymarket, 10)
+        cache.set('market_data', mymarket, 300) # Set cache time to be 5 minutes
   return mymarket
 
+# Set up a checker to give error message when input has wrong time format
 def filter_time(request):
     error = None
     form = TimeFilterForm(request.POST or None)
     mymarket = []
     if request.method == 'POST' and form.is_valid():
         timestamp = form.cleaned_data['filter_time']
-        if not re.match(r'^0x[0-9a-fA-F]{8}$', timestamp):
+        if not re.match(r'^0x[0-9a-fA-F]{8}$', timestamp): # Check input format
           error = "Error: Invalid timestamp format"
           mymarket = Market.objects.all()
         else:
@@ -83,13 +84,14 @@ def filter_time(request):
     
     return render(request, 'homepage.html', context)
 
+# Set up a checker to give error message when input has wrong address format
 def filter_address(request):
     error = None
     form = AddressFilterForm(request.POST or None)
     mymarket = []
     if request.method == 'POST' and form.is_valid():
         address = form.cleaned_data['filter_address']
-        if not re.match(r'^0x[0-9a-fA-F]{40}$', address):
+        if not re.match(r'^0x[0-9a-fA-F]{40}$', address): # Check input format
             error = "Error: Invalid address format"
             mymarket = Market.objects.all()
         else:

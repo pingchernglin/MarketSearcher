@@ -9,20 +9,21 @@
     <input type="submit" value="Refresh">
 </form> -->
 
+<!-- Timestamp input box -->
 <form action="/filter_time/" method="post">
     {% csrf_token %}
     <label>Show all markets open before the timestamp: </label>
     <input type="text" name="filter_time" placeholder="Timestamp" maxlength="100" required>
     <input type="submit" value="OK">
 </form>
-
+<!-- Address input box -->
 <form action="/filter_address/" method="post">
     {% csrf_token %}
     <label>Show all markets that belong to this address: </label>
     <input type="text" name="filter_address" placeholder="Address" maxlength="100" required>
     <input type="submit" value="OK">
 </form>
-
+<!-- Reset filter -->
 <form action="/markets/" method="post">
     {% csrf_token %}
     <input type="submit" value="Reset">
@@ -33,7 +34,7 @@
 {% endif %}
 
 <p>Showing {{ mymarket|length }} markets</p>
-
+<!-- Simple table to show open markets -->
 <table class="center">
     <thead>
         <tr>
