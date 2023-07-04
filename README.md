@@ -39,7 +39,7 @@ Install the required Python packages:
 pip install -r requirements.txt
 ```
 
-Modify the environment variables in `MarketSearcher/simple_application/betaproject/betaproject/.env`:
+Modify the environment variables in `MarketSearcher/simple_application/marketsearcher/marketsearcher/.env`:
 ```makefile
 SECRET_KEY=[private key]
 DB_NAME=market
@@ -57,7 +57,7 @@ sudo apt install redis
 sudo systemctl start redis
 ```
 
-Add your hostname to the settings in `MarketSearcher/simple_application/betaproject/betaproject/settings.py`:
+Add your hostname to the settings in `MarketSearcher/simple_application/marketsearcher/marketsearcher/settings.py`:
 ```css
 ALLOWED_HOSTS = ['YOUR HOSTNAME']
 ```
