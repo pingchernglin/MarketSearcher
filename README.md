@@ -1,4 +1,4 @@
-# Beta Market Searcher
+# Blockchain Market Searcher
 
 Demo:
 http://vcm-34276.vm.duke.edu:8000/markets/
