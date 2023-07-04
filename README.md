@@ -57,7 +57,7 @@ sudo apt install redis
 sudo systemctl start redis
 ```
 
-Add your hostname to the settings in `MarketSearcher/simple_application/marketsearcher/marketsearcher/settings.py`:
+Add your hostname to the settings in `MarketSearcher/simple_application/project/project/settings.py`:
 ```css
 ALLOWED_HOSTS = ['YOUR HOSTNAME']
 ```
