@@ -1,9 +1,5 @@
 # Blockchain Market Searcher
 
-Demo:
-http://vcm-34276.vm.duke.edu:8000/markets/
-
-
 Blockchain Market Searcher is a project that utilizes PostgreSQL as its database. Please follow the instructions below to set up and run the project.
 
 ## Prerequisites
@@ -43,7 +39,7 @@ Install the required Python packages:
 pip install -r requirements.txt
 ```
 
-Modify the environment variables in `Beta/simple_application/betaproject/betaproject/.env`:
+Modify the environment variables in `MarketSearcher/simple_application/betaproject/betaproject/.env`:
 ```makefile
 SECRET_KEY=[private key]
 DB_NAME=market
@@ -61,7 +57,7 @@ sudo apt install redis
 sudo systemctl start redis
 ```
 
-Add your hostname to the settings in `Beta/simple_application/betaproject/betaproject/settings.py`:
+Add your hostname to the settings in `MarketSearcher/simple_application/betaproject/betaproject/settings.py`:
 ```css
 ALLOWED_HOSTS = ['YOUR HOSTNAME']
 ```
@@ -85,4 +81,4 @@ Note: Make sure to close the Redis server after you have finished using the appl
 sudo systemctl stop redis
 ```
 
-Feel free to reach out if you have any further questions or issues regarding the Beta Market Searcher project.
+Feel free to reach out if you have any further questions or issues regarding the Blockchain Market Searcher project.
